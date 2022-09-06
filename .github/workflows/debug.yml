@@ -13,7 +13,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const image = {
-            name: context.repo.repo
+            name: context.repo.repo,
             version: '1.0.0'
           }
           console.log(image)
