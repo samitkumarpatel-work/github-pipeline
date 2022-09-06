@@ -5,6 +5,9 @@ jobs:
   prepare:
     name: Get Docker image version
     runs-on: ubuntu-latest
+    outputs:
+      imageName: ${{ steps.my-output.outputs.imageName }}
+      imageVersion: ${{ steps.my-output.outputs.imageVersion }}
     steps:
     - id: my-output
       name: setOutput
@@ -12,15 +15,20 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          const image = {
-            name: context.repo.repo,
-            version: '1.0.0'
-          }
           console.log(image)
-          core.setOutput('image', image);
-          return image
+          core.setOutput('imageName', context.repo.repo);
+          core.setOutput('imageVersion', '1.0.0');
+          
     - name: debug
       run: |
-        echo ${{ steps.my-output.outputs.image }}
-        echo ${{ steps.my-output.outputs.image.name }}
-        echo ${{ steps.my-output.outputs.result }}
+        echo ${{ steps.my-output.outputs.imageName }}
+        echo ${{ steps.my-output.outputs.imageVersion }}
+  dev:
+    name: dev
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+    - name: Information
+      run: |
+        echo ${{ needs.prepare.outputs.imageName }}
+        echo ${{ needs.prepare.outputs.imageVersion }}
