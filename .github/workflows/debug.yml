@@ -1,0 +1,25 @@
+name: Debug Pipeline
+on:
+  workflow_dispatch:
+jobs:
+  prepare:
+    name: Get Docker image version
+    runs-on: ubuntu-latest
+    steps:
+    - id: my-output
+      name: setOutput
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const image = {
+            name: context.repo.repo
+            version: '1.0.0'
+          }
+          core.setOutput('image', image);
+          return image;
+    - name: debug
+      run: |
+        echo ${{ steps.my-output.outputs.image }}
+        echo ${{ steps.my-output.outputs.image.name }}
+        echo ${{ steps.my-output.outputs.result }}
