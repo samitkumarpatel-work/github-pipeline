@@ -1,0 +1,20 @@
+on:
+  workflow_dispatch:
+jobs:
+  debug:
+    name: Debug
+    runs-on: ubuntu-latest
+    steps:
+    - name: print context
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          console.log(context)
+    - name: print branch details
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          console.log(`Default Branch : ${context?.payload?.repository?.default_branch}`)
+          console.log(`Current Branch : ${context?.ref}`)
