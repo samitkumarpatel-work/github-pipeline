@@ -1,3 +1,4 @@
+name: Branch Details
 on:
   workflow_dispatch:
 jobs:
