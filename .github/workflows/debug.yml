@@ -16,8 +16,9 @@ jobs:
             name: context.repo.repo
             version: '1.0.0'
           }
+          console.log(image)
           core.setOutput('image', image);
-          return image;
+          return image
     - name: debug
       run: |
         echo ${{ steps.my-output.outputs.image }}
