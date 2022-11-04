@@ -6,6 +6,3 @@ jobs:
     #uses: samit-maersk/github-shared-pipeline/.github/workflows/build.yaml@main
     uses: samit-maersk/github-shared-pipeline/.github/workflows/pipeline.yaml@main
     secrets: inherit
-    with:
-      name: "some name"
-      deployTo: "prod"
