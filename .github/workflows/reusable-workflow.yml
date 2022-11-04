@@ -1,0 +1,9 @@
+name: Reusable Workflow
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    uses: samit-maersk/github-shared-pipeline/.github/workflows/build.yaml@main
+    secrets: inherit
+    with:
+      name: "Samit"
