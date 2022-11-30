@@ -1,5 +1,5 @@
 name: Decoration
-run-name: Decorated Pipeline :rocket
+run-name: "[ ${{ github.ref }} ] Branch Build"
 on:
   workflow_dispatch:
 
