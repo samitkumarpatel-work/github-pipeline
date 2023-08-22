@@ -1,0 +1,15 @@
+name: Override Settings.xml
+
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: override settings.xml
+      run: |
+        rm -rf ~/.m2/settings.xml
+        ls -al
+        touch ~/.m2/settings.xml
+        ls -al
+      
