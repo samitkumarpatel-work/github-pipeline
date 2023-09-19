@@ -7,9 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/github-script@v6
+      - id: http-call-output
+        uses: actions/github-script@v6
         with:
           script: |
             fetch('https://api.github.com/users/github')
               .then(res => res.json())
-              .then(json => console.log(json));
+              .then(json => core.setOutput('apiResult', json));
+      - name: debug api result
+        run: |
+          echo ${{ steps.http-call-output.outputs.apiResult }}
