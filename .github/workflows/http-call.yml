@@ -1,4 +1,4 @@
-name: HTTP call from github
+name: HTTP rest call from github
 on:
   workflow_dispatch:
 
