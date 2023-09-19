@@ -1,0 +1,15 @@
+name: HTTP call from github
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            fetch('https://api.github.com/users/github')
+              .then(res => res.json())
+              .then(json => console.log(json));
